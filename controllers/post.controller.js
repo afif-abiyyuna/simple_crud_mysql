@@ -31,9 +31,12 @@ class postController{
                 }).catch(next);
 
             }else{
-                next();
+                postModel.Post.create(post).then(result=>{
+                    res.status(201).json({success:true, message:'Post created succesfully', result});
+        
+                }).catch(next);
             }
-        })
+        });
     }
     static blogId(req,res,next){
         const id = req.params.id;
